@@ -1,0 +1,43 @@
+body {
+	text-align: center;
+    vertical-align: middle;
+    background: #fff1f0;
+    padding-top: 5%;
+}
+
+.circle {
+	width: 450px; 
+	height: 450px;
+	margin: auto ;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 50px rgba(0,0,0,0.1);
+}
+
+.info{
+	height: 60%;
+	width: 50%;
+	background: #ffd;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.description{
+	width: 450px;
+	margin-top: 75px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0 0 50px rgba(0,0,0,0.1);
+	border-radius: 15px;
+	/*background: #fff;*/
+}
+
+h1 {
+	font-family: "Ubuntu";
+	font-weight: 800;
+	color: #fff;
+}
+
+.input-num{
+	margin-top: 250px;
+}
