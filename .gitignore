@@ -1,3 +1,6 @@
 /static/
-__pycache__
-
+*__pycache__*
+*.png
+*.zip
+.env
+token

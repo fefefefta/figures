@@ -7,26 +7,49 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<title>Раздача фигур.</title>
-	
+
 </head>
 <body>
-	<div class="circle">
-		<!-- <div class="info">Круг</div> -->
-		<form id="circles-form" method="POST">
-			<!-- <input type="number" placeholder="сколько вам дать?" step="1" min="0" max="100"> -->
-			<input class="input-num" form="circles-form" type="number" placeholder="сколько?" step="1" min="0" max="100" name="circles-num">
-			<input type="text" name="username" form="circles-form" placeholder="имя или псевдоним"> <br>
-			<input type="submit" value="получить">
-		</form>
+	<div class="left"></div>
+
+	<div class="center">
+		<div class="circle">
+			<!-- <div class="info">Круг</div> -->
+			<form id="circles-form" method="POST">
+				<!-- <input class="input-num" form="circles-form" type="number" placeholder="сколько?" step="1" min="0" max="100" name="circles-num">
+				<input type="text" name="username" form="circles-form" placeholder="имя или псевдоним"> <br>
+				<input type="submit" value="получить"> -->
+
+	      {% csrf_token %}
+	      {{ form }} <br>
+	      <input type="submit" value="Сабмит" class="submit-btn">
+
+			</form>
+		</div>
+
+		<div class="description">
+			<div class="title">Круг</div>
+			<div class="phrase">Влажная мечта человека</div>
+			<div class="storage">На складе осталось: {{ all_circles }} <br>
+			Редких: {{ rare_circles }}<br>
+			Авторских: {{ unique_circles }}</div>
+		</div>
+
+		<div class="buttons">
+			<a href="{% url 'info' %}" class="inf btn">
+				Какая-то инфа
+			</a>			
+
+			<a href="{% url 'table' %}" class="table btn">
+				Какая-то таблица
+			</a>
+		</div>
 	</div>
 
-	<div class="description">
-		<h1>Круг</h1>
-		<div class="phrase">Влажная мечта человека</div>
-		<div class="amount">На складе осталось: {{ all_circles }}</div>
-		<div class="rare">Редких: {{ rare_circles }}</div>
-		<div class="unique">Авторских: {{ unique_circles }}</div>
-	</div>
+	<div class="right"></div>
+
+
+
 
 	
 		

@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Раздача фигур.</title>
+</head>
+<body>
+	<div class="left"></div>
+
+	<div class="center">
+	
+		<div class="client-table">
+			{% if client_list %}
+			<table>
+				<caption class="table-caption">круговладельцы</caption>
+				<thead>
+					<tr>
+						<th>имя</th> 
+						<th>все богатство</th>
+						<th>редкиe</th>
+						<th>авторские</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for client in client_list %}
+					<tr>
+						<th>{{ client.name }}</th>
+						<th>{{ client.circle__count }}</th>
+						<th>{{ client.rare_number }}</th>
+						<th>{{ client.unique_number }}</th>
+					</tr>
+					{% endfor %}
+				</tbody>	
+			</table>
+			{% endif %}
+		</div>
+
+		<div class="buttons">
+				<a href="{% url 'description' %}" class="table btn">
+					Главная страница
+				</a>			
+
+				<a href="{% url 'info' %}" class="inf btn">
+					Какая-то инфа
+				</a>
+		</div>
+	</div>	
+
+	<div class="right"></div>	
+</body>
+</html>

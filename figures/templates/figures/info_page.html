@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Раздача фигур.</title>
+</head>
+<body>
+	<div class="left"></div>
+
+	<div class="center">
+	<div class="announcement">
+		<div class="info-page title">Привет.</div> 
+		<div class="info-page phrase">Раньше я продавал круги, но коронавирус сделал мой бизнес убыточным, и я решил раздать остатки бесплатно. <br>Тут должны быть еще квадраты с треугольниками, но я пока не умею в ajax-запросы :((((<br>
+		Сообщать о багах, мемах, ситуации в мире <a href="https://t.me/fefta" style="color: black;">сюда</a>.</div>
+		<div class="info-page hint">А вообще, это мой первый проект на джанго (после оф. тутора). Если не лень найти ошибки в моем говнокоде и рассказать мне о них, то вот <a href="https://github.com/fefefefta/figures" style="color: #ffffde">гитхаб</a></div> 
+	</div>
+
+	<div class="buttons">
+			<a href="{% url 'description' %}" class="table btn">
+				Главная страница
+			</a>			
+
+			<a href="{% url 'table' %}" class="table btn">
+				Какая-то таблица
+			</a>
+
+		</div>
+	</div>	
+
+	<div class="right"></div>	
+</body>
+</html>

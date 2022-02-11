@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Раздача фигур.</title>
+</head>
+<body>
+	<div class="left"></div>
+
+	<div class="center">
+		<div class="announcement">
+			{% if title %}
+		            <div class="info-page title">{{ title }}</div>
+		        {% endif %}
+
+		        <div class="info-page phrase">{{ message | safe }}</div>
+
+		      <!--   {% if data %}
+		            <div class="info-page phrase">
+		                <pre>{{ data.figures_today }}</pre>
+		            </div>
+		        {% endif %} -->
+	    </div>
+
+	    <div class="buttons">
+				<a href="{% url 'description' %}" class="inf btn">
+					Главная страница
+				</a>			
+
+				<a href="{% url 'info' %}" class="table btn">
+					Какая-то инфа
+				</a>
+		</div>
+	</div>	
+
+	<div class="right"></div>	
+</body>
+</html>
