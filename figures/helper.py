@@ -8,40 +8,24 @@ from PIL import Image, ImageDraw, ImageFont
 
 import zipfile
 import uuid
+import json
 import os
 		
 
-def generate_ordinary(amount):
-	colors = {
-		'red': (214, 47, 47),
-		'blue': (66, 84, 189),
-		'pink': (201, 87, 188),
-		'green': (39, 179, 104),
-		'black': (38, 34, 36),
-		'yellow': (38, 34, 36),
-	}
-	background = (255, 255, 255)
+def generate_ordinary(amount):	
+	with open('figures/collection-data.json', 'rb') as f:
+		collection_data = json.load(f)
 
-	labels = [
-		'Круг.\nОбычный.',
-		'Некоторый\nкруг',
-		'just a\nregular\neveryday\ncircle-\nmotherfucker',
-		'Я просто\nкруг...',
-		'А ведь\nмог быть\nредким...',
-		'жив\nцел\nовал*\n*круг',
-		'не путать с\nокружностью',
-		'да, я\nвлажная мечта\nчеловека',
-		'Кружок',
-		'слава богу\nне квадрат...',
-		'',
-	]
+	colors = collection_data['colors']
+	background = collection_data['background']
+	labels = collection_data['labels']
 
 	ord_circles_exist = Circle.objects.filter(ftype='O').count()
 	for num in range(1, amount+1):
 		path = PATH_TO_ORDINARY + '/ordinary' + str(num+ord_circles_exist) + '.png'
-		img = Image.new('RGB', (250, 250), background)
+		img = Image.new('RGB', (250, 250), tuple(background))
 		draw = ImageDraw.Draw(img)
-		color = choice(list(colors.values()))
+		color = tuple(choice(list(colors.values())))
 		draw.ellipse((50, 50, 200, 200), color)
 		label = choice(labels)
 		font = ImageFont.truetype("UbuntuMono-B.ttf", size=16)
@@ -51,61 +35,12 @@ def generate_ordinary(amount):
 
 
 def generate_rare(batch, amount_of_each): 
-	collection_name = "двуцветия.vol.I"	
-	collection_num = "1"
+	with open('figures/collection-data.json', 'rb') as f:
+		collection_data = json.load(f)
 
-	circle_pattern_models = [
-		{
-			'background': (230, 2, 2),
-		    'circle': (250, 205, 19),
-		    'style': 'IRONMAN',
-		},
-		{
-			'background': (236, 50, 50),
-		    'circle': (1, 69, 255),
-		    'style': 'кони',
-		},
-		{
-			'background': (255, 224, 1),
-		    'circle': (1, 81, 255),
-		    'style': 'Столица мира',
-		},
-		{
-			'background': (0, 0, 0),
-		    'circle': (247, 247, 247),
-		    'style': 'чб',
-		},
-		{
-			'background': (230, 114, 255),
-		    'circle': (0, 0, 0),
-		    'style': '2007',
-		},
-		{
-			'background': (197, 180, 170),
-		    'circle': (140, 114, 98),
-		    'style': 'Латте',
-		},
-		{
-			'background': (33, 127, 207),
-		    'circle': (31, 50, 118),
-		    'style': 'Подводный мир',
-		},
-		{
-			'background': (24, 10, 69),
-		    'circle': (251, 203, 44),
-		    'style': 'Солнце',
-		},
-		{
-			'background': (248, 197, 204),
-		    'circle': (248, 197, 204),
-		    'style': 'невидимка',
-		},
-		{
-			'background': (87, 150, 53),
-		    'circle': (174, 200, 29),
-		    'style': 'Природа',
-		},
-	]
+	collection_name = collection_data['collection']	
+	collection_num = collection_data['collection_num']
+	circle_pattern_models = collection_data['patterns']
 
 	circle_num = 1
 	for pattern in circle_pattern_models:
@@ -114,9 +49,9 @@ def generate_rare(batch, amount_of_each):
 				'_' + str(batch) + '_' + str(circle_num) + '.png'
 			circle_num += 1	
 
-			img = Image.new('RGB', (350, 350), pattern['background'])
+			img = Image.new('RGB', (350, 350), tuple(pattern['background']))
 			draw = ImageDraw.Draw(img)
-			draw.ellipse((60, 60, 290, 290), pattern['circle'])
+			draw.ellipse((60, 60, 290, 290), tuple(pattern['circle']))
 
 			text1 = 'коллекция: ' + collection_name + '\nстиль: ' + pattern['style']
 			text2 = 'unique_code: ' + str(batch) + '_' + str(circle_num)	
