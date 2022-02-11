@@ -1,7 +1,9 @@
 from django.db import models
+
 from mysite.settings import PATH_TO_IMAGES
+
 from pathlib import Path
-# Create your models here.
+
 
 class Client(models.Model):
 	ip = models.CharField(max_length=15, blank=True)
