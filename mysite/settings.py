@@ -15,8 +15,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.getenv("DEBUG") != "false")
 
-ALLOWED_HOSTS = ["*", "127.0.0.1", "localhost", "0.0.0.0"]
-
+ALLOWED_HOSTS = ["*", "51.250.30.38", "127.0.0.1", "localhost", "0.0.0.0"]
+CSRF_TRUSTED_ORIGINS = ["http://51.250.30.38", ]
 
 # Application definition
 
@@ -112,6 +112,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'figures/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 PATH_TO_ARCHIVES = STATIC_URL + 'archives/'
 PATH_TO_IMAGES = STATIC_URL + 'figures/'
 PATH_TO_ORDINARY = PATH_TO_IMAGES + 'buffer/ordinary'
