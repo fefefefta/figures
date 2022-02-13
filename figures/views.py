@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from django.shortcuts import render, redirect
 from django.utils import timezone
 
-from mysite.settings import PATH_TO_ARCHIVES, DAY_LIMIT_OF_FIGURES
+from mysite.settings import BASE_DIR, PATH_TO_ARCHIVES, DAY_LIMIT_OF_FIGURES
 from .models import Client, Circle
 from .forms import FigureRequestForm
 from .helper import make_archive
@@ -38,7 +38,7 @@ def description(request):
 			# Creating zipfile with circles
 			archive_name = make_archive(user, amount)
 			
-			return FileResponse(open(PATH_TO_ARCHIVES + archive_name, 'rb'))
+			return FileResponse(open(str(BASE_DIR) + '/' + PATH_TO_ARCHIVES + archive_name, 'rb'))
 			
 
 	# on method GET

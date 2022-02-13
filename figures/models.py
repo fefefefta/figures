@@ -20,7 +20,7 @@ class Circle(models.Model):
 		('U', 'Unique'),
 	)
 	name = models.CharField(max_length=30, unique=True)
-	image = models.ImageField(upload_to=PATH_TO_IMAGES, default=PATH_TO_IMAGES + 'Круг1.png')
+	image = models.ImageField(upload_to='figures/', default='figures/' + 'Круг1.png')
 	ftype = models.CharField(max_length=1, choices=FTYPES)
 	owner = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=True)
 	sending_date = models.DateTimeField(null=True)

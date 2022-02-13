@@ -1,6 +1,6 @@
 from django.utils import timezone
 from .models import Circle
-from mysite.settings import PATH_TO_ARCHIVES, PATH_TO_IMAGES, PATH_TO_ORDINARY, PATH_TO_RARE, PATH_TO_UNIQUE
+from mysite.settings import BASE_DIR, PATH_TO_ARCHIVES, PATH_TO_IMAGES, PATH_TO_ORDINARY, PATH_TO_RARE, PATH_TO_UNIQUE
 from random import sample, choice
 from pathlib import Path
 
@@ -27,7 +27,7 @@ def generate_ordinary(amount):
 
 	# Making circles
 	for num in range(1, amount+1):
-		path = PATH_TO_ORDINARY + '/ordinary' + str(num+ord_circles_exist) + '.png'
+		path = str(BASE_DIR) + '/' + PATH_TO_ORDINARY + '/ordinary' + str(num+ord_circles_exist) + '.png'
 		img = Image.new('RGB', (250, 250), tuple(background))
 		draw = ImageDraw.Draw(img)
 		color = tuple(choice(list(colors.values())))
@@ -59,7 +59,7 @@ def generate_rare(batch, amount_of_each):
 	circle_num = 1
 	for pattern in circle_pattern_models:
 		for num in range(1, amount_of_each+1):
-			path = PATH_TO_RARE + '/rare' + collection_num + \
+			path = str(BASE_DIR) + '/' + PATH_TO_RARE + '/rare' + collection_num + \
 				'_' + str(batch) + '_' + str(circle_num) + '.png'
 			circle_num += 1	
 
@@ -96,7 +96,7 @@ def create_model(ftype):
 	# To distinct just generated pics from pics related with instanses 
 	# of Circle model, the second one are stored in another (PATH_TO_IMAGES) dir
 	for img in os.listdir(path):
-		Circle(name=img, ftype=ftype, image=PATH_TO_IMAGES + '/' + img).save()
+		Circle(name=img, ftype=ftype, image='figures/' + img).save()
 
 		# Replacing the pic after making Circle
 		os.replace(path + '/' + img, PATH_TO_IMAGES + '/' + img)
@@ -109,7 +109,7 @@ def make_archive(user, amount_of_circles):
 	# I had no idea how to name the archives so I used uuid to make it at least unique.
 	archive_uuid = uuid.uuid4()
 	archive_name = str(archive_uuid) + '.zip' 
-	path_to_archive = Path(PATH_TO_ARCHIVES, archive_name)
+	path_to_archive = Path(BASE_DIR, PATH_TO_ARCHIVES, archive_name)
 
 	with zipfile.ZipFile(path_to_archive, 'w') as zf:
 		for circle in chosen_circles:

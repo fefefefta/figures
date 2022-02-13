@@ -111,10 +111,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'figures/static/'
+MEDIA_URL = 'media/'
+STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-PATH_TO_ARCHIVES = STATIC_URL + 'archives/'
-PATH_TO_IMAGES = STATIC_URL + 'figures/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PATH_TO_ARCHIVES = MEDIA_URL + 'archives/'
+PATH_TO_IMAGES = MEDIA_URL + 'figures/'
 PATH_TO_ORDINARY = PATH_TO_IMAGES + 'buffer/ordinary'
 PATH_TO_RARE = PATH_TO_IMAGES + 'buffer/rare'
 PATH_TO_UNIQUE = PATH_TO_IMAGES + 'buffer/unique'
