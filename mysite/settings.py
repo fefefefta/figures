@@ -15,8 +15,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.getenv("DEBUG") != "false")
 
-ALLOWED_HOSTS = ["*", "51.250.30.38", "127.0.0.1", "localhost", "0.0.0.0"]
-CSRF_TRUSTED_ORIGINS = ["http://51.250.30.38", ]
+ALLOWED_HOSTS = ["*", "51.250.30.38", "ostorage.online", "127.0.0.1", "localhost", "0.0.0.0"]
+CSRF_TRUSTED_ORIGINS = ["http://51.250.30.38", "http://ostorage.online", "https://ostorage.online"]
 
 # Application definition
 

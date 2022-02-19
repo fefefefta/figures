@@ -18,7 +18,7 @@ def description(request):
 	if request.method == 'POST':
 		form = FigureRequestForm(request.POST)
 		if form.is_valid():			
-			ip = request.META['REMOTE_ADDR']
+			ip = request.META['HTTP_X_REAL_IP']
 			name = form.cleaned_data['name']
 			amount = form.cleaned_data['amount']
 
@@ -69,3 +69,6 @@ def table(request):
 	client_list = Client.objects.annotate(Count('circle')).annotate(rare_number=rare_number).annotate(unique_number=unique_number).filter(circle__count__gt=0).order_by('-circle__count', '-unique_number', '-rare_number')
 	return render(request, 'figures/table_page.html', {'client_list': client_list})	
 	
+
+def secret(request):
+	return render(request, 'figures/secret_page.html')

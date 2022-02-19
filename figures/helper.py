@@ -33,7 +33,7 @@ def generate_ordinary(amount):
 		color = tuple(choice(list(colors.values())))
 		draw.ellipse((50, 50, 200, 200), color)
 		label = choice(labels)
-		font = ImageFont.truetype("impact.ttf", size=16)
+		font = ImageFont.truetype("figures/UbuntuMono-B.ttf", size=16)
 		draw.text((85, 95), label, font=font, fill=(242, 242, 242))	
 		img.save(path, 'PNG')
 	print("Готово.")
@@ -71,7 +71,7 @@ def generate_rare(batch, amount_of_each):
 			# Drawing text
 			text1 = 'коллекция: ' + collection_name + '\nстиль: ' + pattern['style']
 			text2 = 'unique_code: ' + str(batch) + '_' + str(circle_num)	
-			font = ImageFont.truetype("impact.ttf", size=18)
+			font = ImageFont.truetype("figures/UbuntuMono-B.ttf", size=18)
 			draw.text((10, 10), text1, font=font, fill=(242, 242, 242))	
 			draw.text((10, 322), text2, font=font, fill=(242, 242, 242))	
 

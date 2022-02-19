@@ -1,4 +1,5 @@
 /static/
+/media/
 *__pycache__*
 *.png
 *.zip
